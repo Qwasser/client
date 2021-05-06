@@ -168,13 +168,7 @@ def _get_program_relpath_from_gitrepo(
 # the `root_dir`. We add the `__stage_dir__` to it to get the full
 # `wandb_dir`
 def get_wandb_dir(root_dir: str) -> str:
-    # We use the hidden version if it already exists, otherwise non-hidden.
-    if os.path.exists(os.path.join(root_dir, ".wandb")):
-        __stage_dir__ = ".wandb" + os.sep
-    else:
-        __stage_dir__ = "wandb" + os.sep
-
-    path = os.path.join(root_dir, __stage_dir__)
+    path = root_dir
     if not os.access(root_dir or ".", os.W_OK):
         wandb.termwarn("Path %s wasn't writable, using system temp directory" % path)
         path = os.path.join(tempfile.gettempdir(), __stage_dir__ or ("wandb" + os.sep))
