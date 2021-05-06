@@ -313,7 +313,7 @@ class _WandbInit(object):
         if settings.symlink:
             self._safe_symlink(
                 os.path.dirname(settings.sync_symlink_latest),
-                os.path.dirname(settings.sync_file),
+                settings.sync_file,
                 os.path.basename(settings.sync_symlink_latest),
                 delete=True,
             )
